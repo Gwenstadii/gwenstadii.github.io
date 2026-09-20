@@ -1,12 +1,10 @@
 
-- Outstanding Graduate Award (CUMT), 2025.
+- 华南理工奖学金，2024-2025。
 
-- National Scholarship for Graduate Students (Ministry of Education, China), 2024.
+- 2026第十六届mathorcup数学应用挑战赛一等奖，2026。
 
-- First-Prize Graduate Academic Scholarship (CUMT), 2023 & 2024.
+- ICM/MCM美国大学生数学建模大赛H奖，2026。
 
-- Outstanding Undergraduate Thesis Award (Jiangsu, China), 2022.
+  
 
-- First-Prize Corporate Scholarship (CUMT), 2020.
-
-- First-Prize Undergraduate Academic Scholarship (CUMT), 2019.
+  

@@ -1,16 +1,18 @@
 
+[![Gwenstadii](https://img.shields.io/badge/Gwenstadii-github-blue?logo=github)](https://github.com/Gwenstadii)
 
-[![senli1073](https://img.shields.io/badge/senli1073-github-blue?logo=github)](https://github.com/senli1073)
+<!-- 简介：下面这段请按你的真实情况改写，第一句原本是模板残留的英文内容 -->
 
-He is currently a Fellow in the Department of Earth and Planetary Sciences (EPS) at Harvard University.
+华南理工大学 人工智能专业 本科生，2024 年入学。
 
-#### Contact
+#### 联系方式
 
-Email: user[at]fas.harvard.edu
+邮箱：2784409183@qq.com  电话：13326419691
 
-#### Education
-M.E., Computer Science and Technology, China University of Mining and Technology, 2022—2025.\
-B.E., Data Science and Big Data Technology, China University of Mining and Technology, 2018—2022.
+#### 教育经历
 
-#### Research Interests
-Machine Learning for Seismology; Foundation Model; Observational Seismology; Microseismic Monitoring
+本科，人工智能，华南理工大学，2024—2028。\
+
+#### 研究方向
+
+大语言模型（LLM）；基础模型（Foundation Model）；视觉-语言-动作模型（VLA）；世界模型（WAM）；智能体（Agent）
