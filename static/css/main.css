@@ -183,6 +183,26 @@ section .main-body {
     text-align: justify;
 }
 
+/* Figures embedded from Markdown (paper teaser / method figures). */
+section .main-body img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 1.4rem auto 0.6rem;
+    border: solid 1px #e2e6ea;
+    border-radius: 6px;
+    background: #ffffff;
+}
+
+section .main-body p > em:only-child {
+    display: block;
+    margin: 0 auto 1.8rem;
+    color: #6c757d;
+    font-size: 1.05rem;
+    line-height: 1.9rem;
+    text-align: center;
+}
+
 /* Content column: 80% of the viewport on large screens (10% whitespace
    each side), capped at 1200px for readability on very wide screens.
    Bootstrap's own caps are 960/1140/1320px at lg/xl/xxl. */

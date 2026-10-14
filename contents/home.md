@@ -15,4 +15,4 @@
 
 #### 研究方向
 
-大语言模型（LLM）；基础模型（Foundation Model）；视觉-语言-动作模型（VLA）；世界模型（WAM）；智能体（Agent）
+视觉-语言-动作模型（VLA）；世界模型（WAM）；大语言模型（LLM）；基础模型（Foundation Model）；智能体（Agent）
