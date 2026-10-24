@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="个人学术主页" />
     <meta name="author" content="Gwenstadii" />
-    <title id="title"></title>
+    <meta name="theme-color" content="#f8fafc" />
+    <title id="title">彭圣迪的个人主页</title>
 
     <!-- Icon -->
     <link rel="icon" type="image/x-icon" href="static/assets/favicon.ico" />
@@ -14,15 +15,9 @@
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 
-    <!-- Google fonts-->
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap"
-        rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
 
     <!-- Core theme CSS (includes Bootstrap)-->
     <link type="text/css" href="static/css/main.css" rel="stylesheet" />
@@ -73,6 +68,7 @@
 </head>
 
 <body id="page-top" class="site-loading">
+    <a class="skip-link" href="#sections">跳转到主要内容</a>
     <div id="page-skeleton" class="page-skeleton" aria-hidden="true">
         <div class="skeleton-section skeleton-section-light">
             <div class="container px-5">
@@ -93,55 +89,46 @@
     </div>
 
     <!-- Navigation-->
-    <nav class="header navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+    <nav class="header navbar navbar-expand-lg navbar-light fixed-top" id="mainNav" aria-label="主导航">
         <div class="container px-5">
             <a id="page-top-title" class="navbar-brand fw-bold" href="#page-top">&nbsp;</a>
-            <!-- <a href="#page-top"><img src="static/assets/img/CUMT_LOGO.svg" style="width: 11rem;"></a> -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="展开导航菜单">
                 菜单
-                <i class="bi-list"></i>
+                <i class="bi-list" aria-hidden="true"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul id="navbar-items" class="navbar-nav ms-auto me-4 my-3 my-lg-0"></ul>
+                <ul id="navbar-items" class="navbar-nav ms-auto my-3 my-lg-0"></ul>
             </div>
         </div>
     </nav>
 
-    <!-- Top Section -->
-    <section class="top-section" id="top-section">
+    <template id="profile-template">
         <div class="top-section-bg top-section-bg-active" aria-hidden="true"></div>
         <div class="top-section-bg" aria-hidden="true"></div>
-        <div class="top-section-content">
-            <div class="container px-5">
-                <h2 id="top-section-bg-text" class="text-white display-3 lh-1 font-alt"></h2>
-            </div>
+        <div class="profile-field" id="top-section-bg-text"></div>
+        <div id="avatar" class="profile-portrait">
+            <img src="static/assets/img/photo.png" alt="彭圣迪的个人照片" fetchpriority="high" />
+            <span class="portrait-caption">Shengdi Peng</span>
         </div>
-    </section>
-    <!-- Top Section -->
-
-    <!-- Photo -->
-    <div class="container px-5">
-        <div id="avatar">
-            <img class="shadow" src="static/assets/img/photo.png" alt="Profile photo">
-        </div>
-    </div>
-    <!-- Photo -->
+    </template>
     
     <main id="sections"></main>
 
 
     <!-- Footer-->
-    <footer class="bg-bottom text-center py-5">
-        <div class="container px-5">
-            <div class="text-white-50 small">
-                <div id="copyright-text" class="mb-2"></div>
-                <a id="github-link" href="https://github.com/username">Github</a>
-                <span class="mx-1">&middot;</span>
-                <a id="license-link" href="https://github.com/username/username.github.io/blob/main/LICENSE">License</a>
+    <footer class="site-footer">
+        <div class="container px-5 footer-inner">
+            <div id="copyright-text"></div>
+            <div class="footer-links">
+                <a id="github-link" href="https://github.com/Gwenstadii">GitHub</a>
+                <a id="license-link" href="https://github.com/Gwenstadii/gwenstadii.github.io/blob/main/LICENSE">开源协议</a>
+                <a class="back-to-top" href="#page-top">返回顶部 <span aria-hidden="true">↑</span></a>
             </div>
         </div>
     </footer>
+
+    <noscript><p class="noscript-message">请启用 JavaScript 以加载个人主页内容。</p></noscript>
 
 </body>
 
