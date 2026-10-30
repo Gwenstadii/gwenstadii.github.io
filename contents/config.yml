@@ -27,6 +27,10 @@ sections:
     nav: 项目
     title: 项目实践经历
     icon: bi-code-slash
+  - id: real-robot
+    nav: 真机
+    title: 真机实验
+    icon: bi-camera-video-fill
   - id: awards
     nav: 获奖
     title: 荣誉奖项

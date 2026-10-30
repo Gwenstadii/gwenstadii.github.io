@@ -135,6 +135,16 @@ img { max-width: 100%; }
 .content-group ul { font-size: .86rem; line-height: 1.95; }
 #student-work-md.grouped-content { grid-template-columns: 1.3fr 1fr; gap: 3rem; }
 
+/* Real-world experiments: captioned photo strip authored as Markdown HTML. */
+.robot-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 1.2rem; margin: 1.4rem 0 0; }
+.robot-gallery figure { margin: 0; min-width: 0; }
+.robot-gallery .figure-link { padding: .6rem; }
+.robot-gallery img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 4px; }
+.robot-gallery figcaption { margin-top: .7rem; color: #8893a1; font-size: .72rem; line-height: 1.75; }
+.robot-gallery figcaption strong { color: #5a6b80; font-weight: 600; }
+@media (min-width: 992px) { .robot-gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.2rem; } }
+@media (max-width: 575px) { .robot-gallery { grid-template-columns: minmax(0, 1fr); gap: 1.2rem; } }
+
 .site-footer { padding: 1.8rem 0; border-top: 1px solid var(--line); background: var(--surface); color: #8892a0; font-size: .72rem; }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
 .footer-links { display: flex; align-items: center; gap: 1.4rem; }

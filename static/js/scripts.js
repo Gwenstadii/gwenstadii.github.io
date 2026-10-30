@@ -173,6 +173,7 @@ function renderSections(sections) {
             header.className = 'section-header';
             const labels = {
                 publications: 'Publications', projects: 'Projects', awards: 'Honors & awards',
+                'real-robot': 'Real-world experiments',
                 skills: 'Skills & certificates', 'student-work': 'Activities',
             };
             const kicker = document.createElement('span');
