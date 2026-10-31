@@ -112,6 +112,13 @@ img { max-width: 100%; }
 .publication-detail-body .figure-link { padding: 1rem; }
 .publication-empty { margin: 1.25rem 0 0 !important; color: #8a95a3 !important; font-size: .75rem !important; font-weight: 400 !important; }
 
+/* A later paper entry (figure-less) keeps the same visual language. */
+#publications-md > h4 { display: flex; align-items: center; gap: .45rem; margin: 3.2rem 0 1.4rem; color: var(--accent); font-size: .75rem; font-weight: 500; }
+#publications-md > h4::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #7796bb; }
+#publications-md > h4 + p { margin: 0 0 1rem; color: #253b57; font-size: 1.16rem; font-weight: 700; line-height: 1.6; }
+#publications-md > h4 + p strong:last-child { display: block; margin-top: .65rem; color: var(--accent); font-size: .74rem; font-weight: 600; }
+#publications-md > h4 + p + p { font-size: .88rem; line-height: 1.95; }
+
 .project-entry { display: grid; grid-template-columns: 145px minmax(0, 1fr); gap: 1.6rem; padding: 1.85rem 0; border-bottom: 1px solid var(--line); }
 .project-entry:first-child { padding-top: 0; }
 .project-entry:last-child { padding-bottom: 0; border: 0; }

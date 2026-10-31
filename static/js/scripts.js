@@ -345,7 +345,11 @@ function enhancePublications(target) {
     const copy = document.createElement('div');
     copy.className = 'publication-description';
     // Capture the remaining nodes before moving the thumbnail and description.
-    const remaining = [...target.children].filter(node => ![label, title, description, figure].includes(node));
+    const afterOverview = [...target.children].filter(node => ![label, title, description, figure].includes(node));
+    // A later `#### ` heading starts another paper entry: keep it and everything
+    // after it outside the details panel so the second entry stays visible.
+    const nextEntry = afterOverview.findIndex(node => node.matches('h4'));
+    const remaining = nextEntry === -1 ? afterOverview : afterOverview.slice(0, nextEntry);
     copy.append(title, description);
     overview.append(figure, copy);
     label.after(overview);
@@ -353,7 +357,7 @@ function enhancePublications(target) {
     const details = document.createElement('details');
     details.className = 'publication-details';
     const summary = document.createElement('summary');
-    summary.textContent = '论文详情与进行中的研究';
+    summary.textContent = '方法与实验详情';
     const detailBody = document.createElement('div');
     detailBody.className = 'publication-detail-body';
     const frameworkCaption = figure.querySelector('figcaption');
