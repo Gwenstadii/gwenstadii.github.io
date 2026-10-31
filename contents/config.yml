@@ -23,6 +23,10 @@ sections:
     nav: 论文
     title: 论文发表
     icon: bi-file-text-fill
+  - id: research
+    nav: 研究
+    title: 研究项目
+    icon: bi-lightbulb-fill
   - id: projects
     nav: 项目
     title: 项目实践经历

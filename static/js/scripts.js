@@ -172,7 +172,7 @@ function renderSections(sections) {
         } else {
             header.className = 'section-header';
             const labels = {
-                publications: 'Publications', projects: 'Projects', awards: 'Honors & awards',
+                publications: 'Publications', research: 'Research', projects: 'Projects', awards: 'Honors & awards',
                 'real-robot': 'Real-world experiments',
                 skills: 'Skills & certificates', 'student-work': 'Activities',
             };
