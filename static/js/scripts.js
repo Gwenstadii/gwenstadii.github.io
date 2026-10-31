@@ -172,7 +172,7 @@ function renderSections(sections) {
         } else {
             header.className = 'section-header';
             const labels = {
-                publications: 'Publications', research: 'Research', projects: 'Projects', awards: 'Honors & awards',
+                publications: 'Publications', projects: 'Projects', awards: 'Honors & awards',
                 'real-robot': 'Real-world experiments',
                 skills: 'Skills & certificates', 'student-work': 'Activities',
             };
@@ -353,7 +353,7 @@ function enhancePublications(target) {
     const details = document.createElement('details');
     details.className = 'publication-details';
     const summary = document.createElement('summary');
-    summary.textContent = '方法与实验详情';
+    summary.textContent = '论文详情与进行中的研究';
     const detailBody = document.createElement('div');
     detailBody.className = 'publication-detail-body';
     const frameworkCaption = figure.querySelector('figcaption');
