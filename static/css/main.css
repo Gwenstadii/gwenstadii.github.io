@@ -250,3 +250,28 @@ img { max-width: 100%; }
     .publication-detail-body { display: block !important; }
     a { color: inherit; }
 }
+
+/* Readable experiment tables, kept side by side on wide displays. */
+.results-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.4rem; margin:1.25rem 0; }
+.experiment-results { margin-top:2.5rem; }
+.experiment-results > h3 { font-size:1.05rem; }
+.result-table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:8px; background:#fff; }
+.result-table-wrap:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+.result-table { width:100%; min-width:470px; border-collapse:collapse; font-size:.72rem; line-height:1.55; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.result-table caption { caption-side:top; padding:1rem .75rem; color:var(--ink); font-weight:600; }
+.result-table th,.result-table td { padding:.55rem .45rem; text-align:right; }
+.result-table th:first-child,.result-table th[scope="row"] { text-align:left; }
+.result-table thead { background:var(--surface); border-block:1px solid var(--line); }
+.result-table tbody + tbody { border-top:1px solid var(--line); }
+.result-table th { font-weight:500; }
+.result-table .ours { background:#edf4fc; }
+.result-table .ours th { color:var(--accent); font-weight:700; }
+.result-table u { text-underline-offset:3px; }
+.results-note { font-size:.78rem; color:var(--muted); line-height:1.9; }
+.publication-details { border:0; }
+.publication-details summary { display:inline-flex; justify-content:center; min-height:46px; padding:.75rem 1.2rem; gap:1.5rem; border:1px solid #b6cbe3; border-radius:8px; background:#eaf2fc; color:#28558b; font-weight:600; font-size:.88rem; box-shadow:0 2px 5px rgb(32 52 76 / 4%); transition:background-color 180ms ease, border-color 180ms ease; }
+.publication-details summary:hover { background:#dceafa; border-color:#7da3ce; }
+.publication-details summary:active { background:#cfdef2; }
+.publication-details summary::after { content:"展开详情 ＋"; font-size:.75rem; color:inherit; }
+.publication-details[open] summary::after { content:"收起详情 −"; }
+@media(max-width:1050px) { .results-grid { grid-template-columns:minmax(0,1fr); } }
