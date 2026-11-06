@@ -302,7 +302,10 @@ function enhanceProfile(target) {
 }
 
 function enhanceFigures(target) {
-    target.querySelectorAll('p > img:only-child').forEach(image => {
+    // Only paragraphs made purely of the image; a single-link figure emitted by a
+    // Markdown extension would otherwise turn the same <p> twice and lose the image.
+    const images = [...target.querySelectorAll('p > img:only-child')];
+    images.forEach(image => {
         const paragraph = image.parentElement;
         const caption = paragraph.nextElementSibling;
         const figure = document.createElement('figure');
@@ -329,11 +332,20 @@ function enhanceFigures(target) {
 function enhancePublications(target) {
     enhanceFigures(target);
     const status = target.querySelector('h4');
-    const title = status?.nextElementSibling;
-    const description = title?.nextElementSibling;
     // The paper thumbnail is the first figure; later figures belong to nested blocks
     // (for example the OpenReview submission card) and must stay where they are.
     const figure = [...target.querySelectorAll('figure')].find(item => !item.closest('.openreview-card'));
+    // Skip HTML wrappers (such as the contribution card) that sit before the title.
+    let title = status?.nextElementSibling;
+    while (title && !title.matches('p') && title !== figure) {
+        title = title.nextElementSibling;
+    }
+    // A figure-less block (for example the contribution card) may sit between the
+    // title and the summary paragraph; it stays as the first body node either way.
+    let description = title?.nextElementSibling;
+    while (description && !description.matches('p') && description !== figure) {
+        description = description.nextElementSibling;
+    }
     // Leave other Markdown structures readable without imposing this paper layout.
     if (!status || !title?.matches('p') || !description?.matches('p') || !figure) return;
 

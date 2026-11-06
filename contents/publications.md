@@ -1,6 +1,17 @@
-#### 投稿中
+#### 已投稿
 
-**PropelVLA: Prototype-Anchored Parameter-Efficient Lifelong Adaptation for Vision-Language-Action Models**&ensp;<strong>CVPR 2027 投稿中</strong>
+<div class="contribution-card">
+<h3>个人贡献（重点）</h3>
+<p class="contribution-lead">在本项目中，<strong>机制归因、判据提炼与实验体系设计由本人负责</strong>，并负责论文方法章节与全部机制图件的绘制；CL-LoRA 的方法思想与原型回放流程来自 π0.5 参考实现，本人的原创性集中在下面四项。</p>
+<ol>
+<li><strong>架构落点：把 CL-LoRA 重新落到没有「动作专家」的 OpenVLA 主干上。</strong>OpenVLA 只有一条 LLaMA-2 7B 流 + L1 回归动作头，π0.5 上「按流切分」的共享 / 专属配方无处可落。本人把切分维度从「流」换成「深度」：浅层 L0–23 裸冻结、深层 L24–31 拆共享 / 专属、动作头 4 个 Linear 全部注入为专属——参数仓从 13.9M 收敛到约 3.5M，单任务成功率反而达到 0.96。</li>
+<li><strong>判据：提出并验证「回放可达性 × 容错度」。</strong>回放只能修复「梯度能作用到评估路径、且该通道对旧任务容错足够」的损伤。该判据在 4 组独立实验中验证，其中 1 组被本人数据证伪后修正为二维，修正后的预测被后续主结果全部命中。</li>
+<li><strong>定位：用模块级漂移探针推翻被 4 次复现的结论。</strong>把「特定层 LoRA-A 漂移导致遗忘」拆成 12 个模块逐个做探针，真正的单点故障只有<strong>动作头入口投影 fc1 的 LoRA-A</strong>（旧任务 0.00，其余模块约 0.9），保护成本从「冻结全部 8 层 A」降到「冻结 1 个模块」。</li>
+<li><strong>诊断与实验构造：</strong>查明评估时真正使用的参数路径（B_K, A_final）从未被训练过，并识别出「部分恢复参数仓」是任务身份冲突而非记忆衰减的评估语义陷阱；由此定出主实验配方（只让「回放够得到但未被保护」的通道充当遗忘源）与同预算单变量消融，证明选帧策略本身是方法组成部分。</li>
+</ol>
+</div>
+
+**PropelVLA: Prototype-Anchored Parameter-Efficient Lifelong Adaptation for Vision-Language-Action Models**&ensp;<strong>CVPR 2027 已投稿</strong>
 
 面向 VLA 模型持续学习中的灾难性遗忘与端侧部署难题，提出原型引导的参数高效终身适配框架 PROPEL-VLA，在冻结预训练主干的前提下同时兼顾新任务可塑性与旧任务保持。
 
@@ -19,6 +30,8 @@
 ![动作条件原型回放](static/assets/img/propel-vla/acpr.png)
 
 *动作条件原型回放（ACPR）：物理引导的隐式技能分段（平移 / 旋转 / 夹爪主导运动模式）、动作条件描述子与多模态融合，以及鲁棒时序 k-center 关键帧选择与回放缓冲区构建。*
+
+> **作图声明：上方共享-专用适配与 ACPR 两张方法图，作图全部由本人独立完成**（全部矢量图元独立绘制，并按最终印刷尺寸逐块验收可读性与换行溢出）。
 
 <div class="experiment-results">
 <h3>四阶段持续学习实验结果</h3>
@@ -290,7 +303,6 @@
 
 <div class="openreview-card">
 <h3>投稿信息</h3>
-<p class="openreview-note">本页不放外部链接；<strong>OpenReview 页面上没有可以直接发出来的链接</strong>，请按下面任一方式自行检索到这篇投稿（两种方式都不依赖本页）。</p>
 <figure>
 <img src="static/assets/img/propel-vla/openreview.png" alt="OpenReview 投稿页截图：标题 PropelVLA、作者、提交日期 2026-11-06、CVPR 2027 Conference Submission 徽标、Subject Area、Keywords 与摘要" loading="lazy" />
 </figure>
@@ -305,15 +317,6 @@
 <tr><th scope="row">摘要要点</th><td>参数高效的 VLA 终身适配框架：任务路由的共享-专用适配（TRSSA）＋ 动作条件原型回放（ACPR）；在四种 VLA 主干与 LIBERO / RoboTwin2.0 上优于均匀回放 4.0–33.5 个百分点，八阶段真机实验最终成功率 66.3%（均匀回放 55.6%）。</td></tr>
 </tbody>
 </table>
-</div>
-<div class="openreview-howto">
-<p><strong>如何查到这篇投稿</strong></p>
-<ol>
-<li><strong>按作者姓名检索</strong>：打开 OpenReview 官网，在搜索框输入作者名（例如 <em>Shengdi Peng</em> 或 <em>Zhanxiang Li</em>），在结果里筛选 <em>CVPR 2027 Conference Submission</em> 这一会议，即可在作者名下找到该条投稿。</li>
-<li><strong>按标题检索</strong>：在 OpenReview 搜索框输入标题开头的 <em>PropelVLA</em> 或 <em>Prototype-Anchored Parameter-Efficient Lifelong Adaptation</em>，即可直接定位。</li>
-<li><strong>在会议下浏览</strong>：进入 OpenReview 的 CVPR 2027 投稿列表，按 <em>Submitted</em> 排序，请求日期 2026 年 11 月 6 日附近；投稿时若开启了 <em>Student Paper</em> 标记，可据此辅助比对。</li>
-</ol>
-<p class="openreview-note">说明：CVPR 2027 为双盲评审，审稿期间该条目可能仅对已登录的评审人、领域主席可见；正式录用后，同一 OpenReview 条目会公布正式版本与作者信息。</p>
 </div>
 </div>
 

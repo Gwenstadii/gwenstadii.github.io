@@ -292,3 +292,18 @@ img { max-width: 100%; }
 #publications-md .openreview-howto ol { margin:0 0 .8rem; padding-left:1.3rem; font-size:.86rem; line-height:1.95; }
 #publications-md .openreview-howto li { margin-bottom:.45rem; }
 #publications-md .openreview-howto em { font-style:normal; color:#3c5069; font-weight:500; }
+
+/* Personal contribution card — deliberately the most prominent element in the entry. */
+#publications-md .contribution-card { margin:1.8rem 0 2.4rem; padding:1.6rem 1.8rem 1.5rem; border:2px solid #c9d9ec; border-left:6px solid var(--accent); border-radius:12px; background:#f4f8fd; box-shadow:0 8px 26px rgb(50 101 165 / 8%); }
+#publications-md .contribution-card > h3 { display:flex; align-items:center; gap:.6rem; margin:0 0 .9rem; color:var(--accent); font-family:var(--site-font); font-size:1.12rem; font-weight:700; letter-spacing:.01em; }
+#publications-md .contribution-card > h3::before { content:""; width:.5rem; height:1.1rem; border-radius:3px; background:var(--accent); }
+#publications-md .contribution-lead { margin-bottom:1rem; color:#2f4055; font-size:.92rem; line-height:1.95; }
+#publications-md .contribution-card ol { margin:0; padding-left:1.35rem; }
+#publications-md .contribution-card li { margin-bottom:.85rem; color:#3d4d61; font-size:.88rem; line-height:1.95; padding-left:.3rem; }
+#publications-md .contribution-card li:last-child { margin-bottom:0; }
+#publications-md .contribution-card li::marker { color:var(--accent); font-weight:700; }
+#publications-md .contribution-card strong { color:#1f3550; }
+
+/* Authorship note under the method figures. */
+#publications-md .publication-detail-body > blockquote { margin:1.1rem 0 1.6rem; padding:1rem 1.2rem; border-left:4px solid #6f9bd1; border-radius:6px; background:#eef5fd; color:#2b4a70; font-size:.88rem; line-height:1.9; }
+#publications-md .publication-detail-body > blockquote strong { color:#1b3d68; }
