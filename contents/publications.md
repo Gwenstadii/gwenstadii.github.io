@@ -2,14 +2,61 @@
 
 <div class="contribution-card">
 <h3>个人贡献（重点）</h3>
-<p class="contribution-lead">在本项目中，<strong>机制归因、判据提炼与实验体系设计由本人负责</strong>，并负责论文方法章节与全部机制图件的绘制；CL-LoRA 的方法思想与原型回放流程来自 π0.5 参考实现，本人的原创性集中在下面四项。</p>
-<ol>
-<li><strong>架构落点：把 CL-LoRA 重新落到没有「动作专家」的 OpenVLA 主干上。</strong>OpenVLA 只有一条 LLaMA-2 7B 流 + L1 回归动作头，π0.5 上「按流切分」的共享 / 专属配方无处可落。本人把切分维度从「流」换成「深度」：浅层 L0–23 裸冻结、深层 L24–31 拆共享 / 专属、动作头 4 个 Linear 全部注入为专属——参数仓从 13.9M 收敛到约 3.5M，单任务成功率反而达到 0.96。</li>
-<li><strong>判据：提出并验证「回放可达性 × 容错度」。</strong>回放只能修复「梯度能作用到评估路径、且该通道对旧任务容错足够」的损伤。该判据在 4 组独立实验中验证，其中 1 组被本人数据证伪后修正为二维，修正后的预测被后续主结果全部命中。</li>
-<li><strong>定位：用模块级漂移探针推翻被 4 次复现的结论。</strong>把「特定层 LoRA-A 漂移导致遗忘」拆成 12 个模块逐个做探针，真正的单点故障只有<strong>动作头入口投影 fc1 的 LoRA-A</strong>（旧任务 0.00，其余模块约 0.9），保护成本从「冻结全部 8 层 A」降到「冻结 1 个模块」。</li>
-<li><strong>诊断与实验构造：</strong>查明评估时真正使用的参数路径（B_K, A_final）从未被训练过，并识别出「部分恢复参数仓」是任务身份冲突而非记忆衰减的评估语义陷阱；由此定出主实验配方（只让「回放够得到但未被保护」的通道充当遗忘源）与同预算单变量消融，证明选帧策略本身是方法组成部分。</li>
-</ol>
+
+<p class="contribution-pain-title">痛点：全 32 层注入 + 按深度切 shared / specific，直接撞上五个连锁问题</p>
+<ul class="contribution-pain">
+<li><strong>参数仓体积失控</strong>：rank=16、24 层 × 7 模块 → 约 13.9M，是参考实现的约 9 倍；</li>
+<li><strong>恢复力太强</strong>：无回放基线的保留率被参数仓恢复抬到 0.2~0.58，降不下来；</li>
+<li><strong>漂移面太大</strong>：specific-A 散布在 28 层上，一漂就是断崖（V26：A=B=C=0）；</li>
+<li><strong>三种遗忘机制互相制约</strong>：增大 A 漂移 → B/C 也崩；减小 → 只有 A 忘，没有中间态；</li>
+<li><strong>遗忘不可预测</strong>：要么忘不干净（参数仓太强），要么全崩（漂移过临界点）。</li>
+</ul>
+<p>这五条合起来说明：<strong>照搬不是“效果差一点”，而是这个结构在单流主干上根本不成立。</strong></p>
+
+<p>这个项目交给我的起点是一句假设——<strong>“顺序微调会遗忘，加上旧数据回放就能缓解”</strong>。我做的工作不是去验证它，而是把它<strong>拆开、证伪、再重建</strong>。</p>
+
+<p><strong>OpenVLA 没有这个前提。</strong>它只有一条 LLaMA-2 7B 流，动作生成由末端的隐状态经过一个浅层 MLP 动作头（L1 回归）完成。照搬“每个专家 18 层、前后各半”的配方，在这里<strong>无处可落</strong>。</p>
+
+<div class="contribution-block">
+<p class="contribution-block-title">我的创新性设计：注入范围（用于对齐模型架构）</p>
+<div class="result-table-wrap" role="region" tabindex="0" aria-label="OpenVLA 上的注入设计，窄屏可横向滚动">
+<table class="result-table contribution-table">
+<thead><tr><th scope="col">模块范围</th><th scope="col">决策</th><th scope="col">做法</th><th scope="col">依据</th></tr></thead>
+<tbody>
+<tr>
+<th scope="row">浅层 L0–23</th>
+<td class="decision">不注入</td>
+<td>完全裸冻结</td>
+<td>预训练表征已足够；挂 LoRA 只增加被改写面积、撑大参数仓、对精度几乎零增益</td>
+</tr>
+<tr>
+<th scope="row">深层 L24–31</th>
+<td class="decision">当“动作专家”</td>
+<td>拆 shared(4) / specific(4)</td>
+<td>单流主干没有第二条流可切，就在单流内部人为造出“专家的内部结构”</td>
+</tr>
+<tr>
+<th scope="row">动作头 4 个 Linear</th>
+<td class="decision">当“出口”</td>
+<td>全部注入、全按 specific</td>
+<td>它是真正的任务输出端，没有跨任务共享价值</td>
+</tr>
+</tbody>
+</table>
 </div>
+<p class="contribution-note">三个可观测指标同时验证了这个选择：参数仓规模从 13.9M 回到参考实现的量级（约 3.5M）、恢复力从“太强以致基线降不下来”变成“刚好”、<strong>单任务成功率反而是 0.96</strong>（说明浅层确实不需要微调），漂移被物理限制在 4 层内。</p>
+</div>
+
+<p class="contribution-subtitle">其余原创性工作</p>
+<ul class="contribution-list">
+<li><strong>判据：提出并验证「回放可达性 × 容错度」。</strong>回放只能修复“梯度能作用到评估路径、且该通道对旧任务容错足够”的损伤。该判据在 <strong>4 组独立实验中验证</strong>，其中 <strong>1 组被本人数据证伪</strong>后修正为二维，修正后的预测被后续主结果全部命中。</li>
+<li><strong>定位：用模块级漂移探针推翻被 4 次复现的结论。</strong>把“特定层 LoRA-A 漂移导致遗忘”拆成 <strong>12 个模块</strong>逐个做探针，真正的单点故障只有<strong>动作头入口投影 fc1 的 LoRA-A</strong>（旧任务 0.00，其余模块约 0.9），保护成本从“冻结全部 8 层 A”降到<strong>“冻结 1 个模块”</strong>。</li>
+<li><strong>诊断与实验构造：</strong>查明评估时真正使用的参数路径（B_K, A_final）<strong>从未被训练过</strong>，并识别出“部分恢复参数仓”是<strong>任务身份冲突</strong>而非记忆衰减的评估语义陷阱；由此定出主实验配方（只让“回放够得到但未被保护”的通道充当遗忘源）与同预算单变量消融，证明<strong>选帧策略本身是方法的组成部分</strong>。</li>
+</ul>
+
+<p class="contribution-note">边界：CL-LoRA 的方法思想与原型回放流程来自 π0.5 参考实现；本人在本项目中负责<strong>机制归因、判据提炼、实验体系设计</strong>，以及论文方法章节与全部机制图件的绘制。</p>
+</div>
+
 
 **PropelVLA: Prototype-Anchored Parameter-Efficient Lifelong Adaptation for Vision-Language-Action Models**&ensp;<strong>CVPR 2027 已投稿</strong>
 

@@ -307,3 +307,17 @@ img { max-width: 100%; }
 /* Authorship note under the method figures. */
 #publications-md .publication-detail-body > blockquote { margin:1.1rem 0 1.6rem; padding:1rem 1.2rem; border-left:4px solid #6f9bd1; border-radius:6px; background:#eef5fd; color:#2b4a70; font-size:.88rem; line-height:1.9; }
 #publications-md .publication-detail-body > blockquote strong { color:#1b3d68; }
+
+#publications-md .contribution-pain-title { margin:.4rem 0 .7rem; color:#b23b3b; font-size:.92rem; font-weight:700; line-height:1.8; }
+#publications-md .contribution-card ul.contribution-pain { margin:0 0 1.1rem; padding-left:1.3rem; }
+#publications-md .contribution-card ul.contribution-pain li { margin-bottom:.5rem; padding-left:.25rem; color:#4a3a3a; font-size:.87rem; line-height:1.9; }
+#publications-md .contribution-card ul.contribution-pain li::marker { color:#c1666b; }
+#publications-md .contribution-block { margin:1.5rem 0 1.2rem; padding:1.1rem 1.2rem 1rem; border:1px solid #d7e3f1; border-radius:10px; background:#fff; }
+#publications-md .contribution-block-title { margin:0 0 .8rem; color:var(--accent); font-family:var(--site-font); font-size:.9rem; font-weight:700; }
+#publications-md .contribution-table { min-width:420px; font-size:.78rem; }
+#publications-md .contribution-table th { text-align:left; white-space:normal; }
+#publications-md .contribution-table td { text-align:left; white-space:normal; line-height:1.8; }
+#publications-md .contribution-table td.decision { color:var(--accent); font-weight:700; white-space:nowrap; }
+#publications-md .contribution-subtitle { margin:1.4rem 0 .7rem; color:#1f3550; font-size:.92rem; font-weight:700; }
+#publications-md .contribution-card ul.contribution-list { margin:0 0 1rem; padding-left:1.3rem; }
+#publications-md .contribution-card .contribution-note { margin-top:.6rem; color:#5a6b80; font-size:.8rem; line-height:1.85; }
