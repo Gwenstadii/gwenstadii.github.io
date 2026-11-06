@@ -331,7 +331,9 @@ function enhancePublications(target) {
     const status = target.querySelector('h4');
     const title = status?.nextElementSibling;
     const description = title?.nextElementSibling;
-    const figure = target.querySelector('figure');
+    // The paper thumbnail is the first figure; later figures belong to nested blocks
+    // (for example the OpenReview submission card) and must stay where they are.
+    const figure = [...target.querySelectorAll('figure')].find(item => !item.closest('.openreview-card'));
     // Leave other Markdown structures readable without imposing this paper layout.
     if (!status || !title?.matches('p') || !description?.matches('p') || !figure) return;
 
@@ -345,7 +347,7 @@ function enhancePublications(target) {
     const copy = document.createElement('div');
     copy.className = 'publication-description';
     // Capture the remaining nodes before moving the thumbnail and description.
-    const afterOverview = [...target.children].filter(node => ![label, title, description, figure].includes(node));
+    const afterOverview = [...target.children].filter(node => ![label, title, description].includes(node) && !figure.contains(node));
     // A later `#### ` heading starts another paper entry: keep it and everything
     // after it outside the details panel so the second entry stays visible.
     const nextEntry = afterOverview.findIndex(node => node.matches('h4'));

@@ -1,6 +1,6 @@
 #### 投稿中
 
-**PROPEL-VLA: Prototype-Guided Parameter-Efficient Lifelong Adaptation for Vision-Language-Action Models**&ensp;<strong>CVPR 投稿中</strong>
+**PropelVLA: Prototype-Anchored Parameter-Efficient Lifelong Adaptation for Vision-Language-Action Models**&ensp;<strong>CVPR 2027 投稿中</strong>
 
 面向 VLA 模型持续学习中的灾难性遗忘与端侧部署难题，提出原型引导的参数高效终身适配框架 PROPEL-VLA，在冻结预训练主干的前提下同时兼顾新任务可塑性与旧任务保持。
 
@@ -286,6 +286,35 @@
 </div>
 <p class="results-note"><strong>注：</strong>数据按所提供的论文表格录入，单位为百分点，均为四阶段结果。↑ 表示越高越好，↓ 表示越低越好。FWT：前向迁移；NBT：负向后向迁移；AUC：学习曲线下面积；Final SR：最终成功率。</p>
 <p class="results-note">TRSSA 为任务路由的共享-专用适配，UR 为均匀回放；LoRA 与 TRSSA 不使用回放。<strong>粗体</strong>与<u>下划线</u>分别表示同一基座、同一指标的最优与次优结果；并列数值共享排名。浅蓝色行标示 PROPEL-VLA。</p>
+</div>
+
+<div class="openreview-card">
+<h3>投稿信息</h3>
+<p class="openreview-note">本页不放外部链接；<strong>OpenReview 页面上没有可以直接发出来的链接</strong>，请按下面任一方式自行检索到这篇投稿（两种方式都不依赖本页）。</p>
+<figure>
+<img src="static/assets/img/propel-vla/openreview.png" alt="OpenReview 投稿页截图：标题 PropelVLA、作者、提交日期 2026-11-06、CVPR 2027 Conference Submission 徽标、Subject Area、Keywords 与摘要" loading="lazy" />
+</figure>
+<p class="openreview-table-title">OpenReview 页面上的公开元数据</p>
+<div class="result-table-wrap" role="region" tabindex="0" aria-label="投稿元数据，窄屏可横向滚动">
+<table class="result-table openreview-table">
+<tbody>
+<tr><th scope="row">标题</th><td>PropelVLA: Prototype-Anchored Parameter-Efficient Lifelong Adaptation for Vision-Language-Action Models</td></tr>
+<tr><th scope="row">作者</th><td>Zhanxiang Li, Taozhi Yang, <strong>彭圣迪（Shengdi Peng）</strong>, Huaidong Zhang（华南理工大学）</td></tr>
+<tr><th scope="row">投稿</th><td>CVPR 2027 Conference Submission · 提交于 2026 年 11 月 6 日</td></tr>
+<tr><th scope="row">研究与关键词</th><td>Physical AI: World Models, VLA, Planning, Simulation；vision-language-action models, continual learning, lifelong robot learning, parameter-efficient fine-tuning, low-rank adaptation, experience replay, robotic manipulation</td></tr>
+<tr><th scope="row">摘要要点</th><td>参数高效的 VLA 终身适配框架：任务路由的共享-专用适配（TRSSA）＋ 动作条件原型回放（ACPR）；在四种 VLA 主干与 LIBERO / RoboTwin2.0 上优于均匀回放 4.0–33.5 个百分点，八阶段真机实验最终成功率 66.3%（均匀回放 55.6%）。</td></tr>
+</tbody>
+</table>
+</div>
+<div class="openreview-howto">
+<p><strong>如何查到这篇投稿</strong></p>
+<ol>
+<li><strong>按作者姓名检索</strong>：打开 OpenReview 官网，在搜索框输入作者名（例如 <em>Shengdi Peng</em> 或 <em>Zhanxiang Li</em>），在结果里筛选 <em>CVPR 2027 Conference Submission</em> 这一会议，即可在作者名下找到该条投稿。</li>
+<li><strong>按标题检索</strong>：在 OpenReview 搜索框输入标题开头的 <em>PropelVLA</em> 或 <em>Prototype-Anchored Parameter-Efficient Lifelong Adaptation</em>，即可直接定位。</li>
+<li><strong>在会议下浏览</strong>：进入 OpenReview 的 CVPR 2027 投稿列表，按 <em>Submitted</em> 排序，请求日期 2026 年 11 月 6 日附近；投稿时若开启了 <em>Student Paper</em> 标记，可据此辅助比对。</li>
+</ol>
+<p class="openreview-note">说明：CVPR 2027 为双盲评审，审稿期间该条目可能仅对已登录的评审人、领域主席可见；正式录用后，同一 OpenReview 条目会公布正式版本与作者信息。</p>
+</div>
 </div>
 
 #### 进行中

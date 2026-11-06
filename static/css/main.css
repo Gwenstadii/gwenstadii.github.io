@@ -275,3 +275,20 @@ img { max-width: 100%; }
 .publication-details summary::after { content:"展开详情 ＋"; font-size:.75rem; color:inherit; }
 .publication-details[open] summary::after { content:"收起详情 −"; }
 @media(max-width:1050px) { .results-grid { grid-template-columns:minmax(0,1fr); } }
+
+/* OpenReview submission card (screenshot + how to look it up). */
+#publications-md .openreview-card { margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--line); }
+#publications-md .openreview-card > h3 { margin:0 0 1.1rem; font-size:1.05rem; }
+#publications-md .openreview-card > figure { margin:0 0 1.2rem; }
+#publications-md .openreview-card .figure-link { padding:.6rem; }
+#publications-md .openreview-card img { display:block; width:100%; height:auto; }
+#publications-md .openreview-card figcaption { margin-top:.7rem; color:#8893a1; font-size:.72rem; line-height:1.75; }
+#publications-md .openreview-note { font-size:.78rem; color:var(--muted); line-height:1.9; }
+#publications-md .openreview-table-title { margin:1.4rem 0 .6rem; color:var(--ink); font-size:.86rem; font-weight:600; }
+#publications-md .openreview-table th { width:7.5em; }
+#publications-md .openreview-table td { text-align:left; white-space:normal; line-height:1.85; }
+#publications-md .openreview-howto { margin-top:1.5rem; }
+#publications-md .openreview-howto > p:first-child { margin-bottom:.5rem; color:var(--ink); font-size:.9rem; }
+#publications-md .openreview-howto ol { margin:0 0 .8rem; padding-left:1.3rem; font-size:.86rem; line-height:1.95; }
+#publications-md .openreview-howto li { margin-bottom:.45rem; }
+#publications-md .openreview-howto em { font-style:normal; color:#3c5069; font-weight:500; }
