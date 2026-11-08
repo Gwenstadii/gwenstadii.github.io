@@ -112,6 +112,12 @@
 <summary>方法与实验详情</summary>
 <div class="publication-detail-body">
 <p class="research-scope">本研究基于已有论文开展现象复现与分析方法迁移，进一步考察持续学习如何改变旧指令对目标选择的控制。下述实验为当前阶段的观察；内部机制及缓解收益仍在验证中。</p>
+<figure class="research-figure">
+<a class="figure-link" href="static/assets/img/vla-goal-control/research-overview.png" target="_blank" rel="noopener" aria-label="查看研究总览原图">
+<img src="static/assets/img/vla-goal-control/research-overview.png" alt="基于 LIBERO 的持续学习研究总览：旧指令目标可能被新学目标替代，同一早期物理状态下目标选择退化，但语言对动作的影响未完全消失。" loading="lazy" />
+</a>
+<figcaption>研究总览：持续学习中的目标选择退化与初步观察。点击图片可查看原图。</figcaption>
+</figure>
 <h3>一、行为现象复现：从熟悉目标偏置到旧指令失控</h3>
 <section class="research-study">
 <h4>1. 熟悉目标覆盖当前指令</h4>
