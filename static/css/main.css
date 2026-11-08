@@ -1,5 +1,13 @@
 @import "./styles.css";
 
+/* Ongoing research uses the same native, keyboard-accessible details button. */
+.research-details .research-study { padding: 1.25rem 0; border-bottom: 1px solid var(--line); }
+.research-details .research-study:last-of-type { border-bottom: 0; }
+.research-details .publication-detail-body > h3 { margin: 1.8rem 0 .4rem; font-size: 1.1rem; }
+.research-details .research-study h4 { margin: 0 0 .65rem; font-size: 1rem; }
+.research-details .research-reference { font-size: .8rem; color: var(--muted); }
+.research-details .research-scope { margin-top: 1rem; color: var(--muted); }
+
 :root {
     --ink: #202c3c;
     --muted: #697586;

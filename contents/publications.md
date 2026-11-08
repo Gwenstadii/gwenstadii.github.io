@@ -107,3 +107,48 @@
 - **初步观察**：旧指令可能被新学目标接管；在相同、且仍可完成旧目标的早期物理状态下，更新后的模型仍表现出目标选择退化；而语言对动作的影响并未完全消失。
 - **研究特色**：结合前后配对评测、同状态策略交接与动作响应干预，把**目标选择退化**、**执行退化**、**状态分布变化**区分开，并分析**共同动作倾向**与**指令条件调整**如何共同影响目标控制。
 - **下一步**：据此探索有限记忆回放与针对性保护方法；具体内部机制及缓解收益仍在验证中。
+
+<details class="publication-details research-details">
+<summary>方法与实验详情</summary>
+<div class="publication-detail-body">
+<p class="research-scope">本研究基于已有论文开展现象复现与分析方法迁移，进一步考察持续学习如何改变旧指令对目标选择的控制。下述实验为当前阶段的观察；内部机制及缓解收益仍在验证中。</p>
+<h3>一、行为现象复现：从熟悉目标偏置到旧指令失控</h3>
+<section class="research-study">
+<h4>1. 熟悉目标覆盖当前指令</h4>
+<p class="research-reference">相关工作：<a href="https://arxiv.org/abs/2602.17659" target="_blank" rel="noopener">When Vision Overrides Language</a> · LIBERO-CF</p>
+<p><strong>论文现象：</strong>在同一场景中，即使指令要求另一个合理目标，模型仍可能执行训练时熟悉的任务。</p>
+<p><strong>复现观察：</strong>仅学习左格任务的模型，面对未训练的前／右／后指令，30 回合的首次目标全部为左格。继续学习右格后，旧左指令开始触发右格行为；在充分续训后的对应实验中，<strong>14/20 回合最终完成右格</strong>。</p>
+<p><strong>进一步研究：</strong>复现“熟悉目标偏置”和“指令被默认行为覆盖”，并进一步观察默认目标如何随后续学习改变，甚至覆盖原来已经能执行的旧指令。</p>
+</section>
+<section class="research-study">
+<h4>2. 对语言敏感，不等于正确绑定目标</h4>
+<p class="research-reference">相关工作：<a href="https://arxiv.org/abs/2609.39971" target="_blank" rel="noopener">When Instructions Retrieve Trajectories</a> · ECT</p>
+<p><strong>论文现象：</strong>模型可能对语言变化作出反应，却仍调用熟悉行为，因而不能把失败全部归因于“完全忽略语言”。论文以 ECT 反事实数据与配对训练缓解此类问题。</p>
+<p><strong>复现观察：</strong>在书场景中，训练模板与同模板替换位置词的指令均为 <strong>10/10 指向新右格</strong>；同义改写为 <strong>7/10</strong>；无关句与乱码均为 <strong>0/10</strong>。语言影响是否启动搬运，却没有可靠决定搬往哪个格子。</p>
+<p><strong>进一步研究：</strong>复现“语言响应仍存在，但指令—动作目标绑定不可靠”的行为现象，并将其放到持续学习前后进行比较。这里报告的是行为现象复现，不代表已完成 ECT 缓解方法的复现。</p>
+</section>
+<section class="research-study">
+<h4>3. 语言响应仍在，但未可靠控制目标</h4>
+<p class="research-reference">相关工作：<a href="https://arxiv.org/abs/2610.06235" target="_blank" rel="noopener">Encoded but Not in Control</a></p>
+<p><strong>论文发现：</strong>指令变化仍可影响内部预测，目标信息甚至可以被线性解码，但这些信息未必决定机器人选择哪个目标。</p>
+<p><strong>对应观察：</strong>固定观测、机器人状态、动作草稿与生成时刻后，续训模型对不同旧指令仍产生不同响应；但在同一早期物理状态下，旧模型能按左／前指令分流，续训模型却都去右格。K4 实验还发现，位置词获得注意力，不代表屏蔽它就会改变续训模型的目标。</p>
+<p><strong>研究重点：</strong>把“有语言响应”“有目标相关信息”与“语言实际控制目标”区分开，通过同状态策略交接与闭环行为评估检查控制是否保留。当前观察不等同于已证实与相关论文完全相同的内部机制。</p>
+</section>
+<h3>二、因果干预分析：动作条件接口与响应分解</h3>
+<section class="research-study">
+<h4>4. 通过激活替换分析动作条件接口</h4>
+<p class="research-reference">方法参考：<a href="https://arxiv.org/abs/2610.20750" target="_blank" rel="noopener">Causal Analysis of Robot Foundation Models Enables Efficiency Gains</a></p>
+<p><strong>论文方法：</strong>通过内部激活替换，分析图像和指令经哪些接口影响动作；在其研究的部分模型中，因果作用集中于少数跨注意力层。</p>
+<p><strong>已实现的分析：</strong>跨检查点消息交换、逐层跨注意力（CA）干预、注意力组合替换、层内拆分，以及闭环目标评估。</p>
+<p><strong>进一步研究：</strong>将这些干预用于持续学习前后的检查点比较，考察哪些动作条件接口参与旧指令目标控制的变化。已实现分析工具，不预先断言本研究模型也具有相同的层级集中性。</p>
+</section>
+<section class="research-study">
+<h4>5. 区分共同动作倾向与指令条件差异</h4>
+<p class="research-reference">方法参考：<a href="https://arxiv.org/abs/2610.08718" target="_blank" rel="noopener">When Forgetting is not Catastrophic</a></p>
+<p><strong>论文机制：</strong>新训练引起的共同表征位移，可能使旧知识暂时难以访问；消除共同位移等干预可以恢复部分旧事实。该工作讨论语言模型中的知识遗忘，为本研究提供分析思路。</p>
+<p><strong>已有对应分析：</strong>把旧指令下的动作响应拆成共同部分 <strong>μ</strong> 与条件差异 <strong>d</strong>，交叉恢复两部分，分别观察目标偏置、运动分流和完整任务成功如何变化。</p>
+<p><strong>进一步研究：</strong>将共同变化与条件信息变化的区分迁移到 VLA 动作控制分析，检验共同动作倾向与指令条件调整各自的作用。目标偏置或运动分流发生变化，不直接等同于完整任务成功恢复。</p>
+</section>
+<p class="results-note"><strong>实验口径：</strong>30 回合记录的是首次目标；14/20 记录的是充分续训后对应实验的最终右格完成情况；书场景中的 10/10、7/10、0/10 记录的是不同语言条件下指向新右格的表现。这些数字来自不同实验条件，不合并计算总体成功率。</p>
+</div>
+</details>
