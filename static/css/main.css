@@ -108,6 +108,8 @@ img { max-width: 100%; }
 .research-figure figcaption { margin-top: .75rem; color: #8893a1; font-size: .73rem; line-height: 1.85; }
 .research-figure figcaption em { font-style: normal; }
 .publication-overview .figure-link img { aspect-ratio: 1748 / 1168; }
+.learsq-overview .figure-link img { aspect-ratio: auto; }
+.learsq-overview { margin-top: 1.5rem; }
 .publication-overview .research-figure figcaption { display: none; }
 .publication-details { margin-top: 1.6rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .publication-details summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .9rem 0; color: var(--accent); font-size: .8rem; font-weight: 500; cursor: pointer; list-style: none; }

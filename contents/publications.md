@@ -159,3 +159,38 @@
 <p class="results-note"><strong>实验口径：</strong>30 回合记录的是首次目标；14/20 记录的是充分续训后对应实验的最终右格完成情况；书场景中的 10/10、7/10、0/10 记录的是不同语言条件下指向新右格的表现。这些数字来自不同实验条件，不合并计算总体成功率。</p>
 </div>
 </details>
+
+#### LeaRSQ
+
+<article class="publication-overview learsq-overview" aria-labelledby="learsq-title">
+<figure class="research-figure">
+<a class="figure-link" href="static/assets/img/learsq/framework.png" target="_blank" rel="noopener" aria-label="查看 LeaRSQ 框架原图">
+<img src="static/assets/img/learsq/framework.png" alt="LeaRSQ 框架：左侧通过联合重构损失、STE 与 H64 学习旋转；右侧在 GDN 和 KDA 中使用冻结旋转与融合状态内核进行 INT8 循环状态推理。" loading="lazy" />
+</a>
+</figure>
+<div class="publication-description">
+<h3 id="learsq-title" class="publication-title">LeaRSQ：面向线性注意力模型循环状态量化的可学习旋转方法</h3>
+<p>聚焦线性注意力（Linear Attention）模型在自回归推理中的<strong>循环状态存储与数据搬运开销</strong>，研究如何通过低比特量化降低存储成本，同时尽可能保持推理性能。</p>
+<p>针对 INT8 量化误差及其在循环更新中的累积传播，提出 <strong>LeaRSQ（Learnable Rotations for Recurrent-State Quantization）</strong>。通过学习模型自适应的正交旋转变换，改善状态表示的量化友好性，缓解量化误差对模型输出的影响，并在 <strong>Gated Delta Networks（GDN）</strong>与 <strong>Kimi Delta Attention（KDA）</strong>两种代表性架构上开展研究与评估。</p>
+</div>
+</article>
+
+<details class="publication-details research-details">
+<summary>方法与实验详情</summary>
+<div class="publication-detail-body">
+<p class="research-scope">框架图展示旋转学习与 INT8 推理两个阶段，点击上方配图可查看原图。</p>
+<section class="research-study">
+<h4>模型自适应的正交旋转</h4>
+<p>通过学习<strong>模型自适应的正交旋转矩阵</strong>，将循环状态变换到更适合低精度量化的表示空间。针对不同架构的状态更新特点，分别采用 <strong>GDN 的 Key 维度旋转（Key-side Rotation）</strong>与 <strong>KDA 的 Value 维度旋转（Value-side Rotation）</strong>，在改变状态表示的同时保持原有全精度计算结构。</p>
+</section>
+<section class="research-study">
+<h4>冻结主干，联合重构输出与循环状态</h4>
+<p>训练阶段<strong>冻结预训练模型参数，仅优化旋转矩阵</strong>。联合优化局部输出重构损失与循环状态重构损失，使量化路径的输出和状态尽可能接近全精度参考结果。</p>
+<p>引入 <strong>64 Token 截断反向传播（H64）</strong>与<strong>直通估计器（STE）</strong>，以建模和缓解量化误差在连续循环状态更新过程中的传播。</p>
+</section>
+<section class="research-study">
+<h4>INT8 推理与融合状态内核</h4>
+<p>推理阶段冻结学习到的旋转矩阵，将其集成到 <strong>INT8 循环状态推理流程</strong>中；在 <strong>SGLang</strong> 中实现<strong>状态反量化、循环更新与重新量化的融合计算</strong>，以降低状态处理开销。</p>
+</section>
+</div>
+</details>
