@@ -100,20 +100,25 @@
 
 #### 进行中
 
-**视觉—语言—动作模型（VLA）在持续学习中的语言条件目标控制退化**&ensp;<strong>论文准备中</strong>
-
-持续学习中的 VLA 模型不只可能遗忘操作技能，还可能丢掉「按指令选目标」的能力——机器人学完新任务之后，面对旧指令是否仍会走向正确的物体，而不只是把动作模式保留下来。
-
-- **初步观察**：旧指令可能被新学目标接管；在相同、且仍可完成旧目标的早期物理状态下，更新后的模型仍表现出目标选择退化；而语言对动作的影响并未完全消失。
-- **研究特色**：结合前后配对评测、同状态策略交接与动作响应干预，把**目标选择退化**、**执行退化**、**状态分布变化**区分开，并分析**共同动作倾向**与**指令条件调整**如何共同影响目标控制。
-- **下一步**：据此探索有限记忆回放与针对性保护方法；具体内部机制及缓解收益仍在验证中。
-
+<article class="publication-overview goal-control-overview" aria-labelledby="goal-control-title">
 <figure class="research-figure">
 <a class="figure-link" href="static/assets/img/vla-goal-control/research-overview.png" target="_blank" rel="noopener" aria-label="查看研究总览原图">
 <img src="static/assets/img/vla-goal-control/research-overview.png" alt="基于 LIBERO 的持续学习研究总览：旧指令目标可能被新学目标替代，同一早期物理状态下目标选择退化，但语言对动作的影响未完全消失。" loading="lazy" />
 </a>
 <figcaption>研究总览：持续学习中的目标选择退化与初步观察。点击图片可查看原图。</figcaption>
 </figure>
+<div class="publication-description">
+<h3 id="goal-control-title" class="publication-title">视觉—语言—动作模型（VLA）在持续学习中的语言条件目标控制退化</h3>
+<p><strong>论文准备中</strong></p>
+<p>持续学习中的 VLA 模型不只可能遗忘操作技能，还可能丢掉「按指令选目标」的能力——机器人学完新任务之后，面对旧指令是否仍会走向正确的物体，而不只是把动作模式保留下来。</p>
+<p><strong>发现结论：</strong>旧任务的条件控制能力<strong>没有随着持续学习而完全消失</strong>。它仍然存在于续训模型的动作响应中，但其有效性取决于<strong>条件差异的强度</strong>，以及它所处的<strong>共同动作响应背景</strong>。</p>
+<p>持续学习导致的旧任务退化，涉及<strong>共同动作响应漂移</strong>与<strong>旧指令条件差异衰减</strong>的共同作用。旧指令的残留响应仍然具有<strong>功能可用性</strong>，但需要与合适的共同动作基础配合，才能重新转化为<strong>有效的目标控制</strong>。</p>
+</div>
+</article>
+
+- **初步观察**：旧指令可能被新学目标接管；在相同、且仍可完成旧目标的早期物理状态下，更新后的模型仍表现出目标选择退化；而语言对动作的影响并未完全消失。
+- **研究特色**：结合前后配对评测、同状态策略交接与动作响应干预，把**目标选择退化**、**执行退化**、**状态分布变化**区分开，并分析**共同动作倾向**与**指令条件调整**如何共同影响目标控制。
+- **下一步**：据此探索有限记忆回放与针对性保护方法；具体内部机制及缓解收益仍在验证中。
 
 <details class="publication-details research-details">
 <summary>方法与实验详情</summary>
@@ -164,8 +169,8 @@
 
 <article class="publication-overview learsq-overview" aria-labelledby="learsq-title">
 <figure class="research-figure">
-<a class="figure-link" href="static/assets/img/learsq/framework.png" target="_blank" rel="noopener" aria-label="查看 LeaRSQ 框架原图">
-<img src="static/assets/img/learsq/framework.png" alt="LeaRSQ 框架：左侧通过联合重构损失、STE 与 H64 学习旋转；右侧在 GDN 和 KDA 中使用冻结旋转与融合状态内核进行 INT8 循环状态推理。" loading="lazy" />
+<a class="figure-link" href="static/assets/img/learsq/framework-v2.png" target="_blank" rel="noopener" aria-label="查看 LeaRSQ 框架原图">
+<img src="static/assets/img/learsq/framework-v2.png" alt="LeaRSQ 新版框架：旋转学习使用联合重构、STE 与 H64；INT8 推理展示 GDN Key 旋转、KDA Value 旋转、量化表示和跨 Token 的融合状态更新。" loading="lazy" />
 </a>
 </figure>
 <div class="publication-description">
